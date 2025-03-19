@@ -16,7 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from users.views import UserListCreate
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse('Welcome to Secure User Data App!')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('users/', UserListCreate.as_view(), name='user-list-create'),
+    path('', home, name='home'),
 ]
